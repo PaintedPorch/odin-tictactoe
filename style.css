@@ -19,6 +19,7 @@ body {
     width: 100%;
     justify-items: center;
     background-size: 100%;
+    background-repeat: repeat;
 }
 
 #playoptions {
@@ -51,19 +52,20 @@ body {
     grid-template-columns: repeat(3, minmax(33.333%, 1fr));
     grid-template-rows: repeat(3, minmax(33.3333%, 1fr));
     max-width: var(--maxFieldWidth);
-    
+    min-width: 250px;
+    max-width: 675px;
 }
 
 .space {
-    min-width: 150px;
+    min-width: 75px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .blackPiece, .whitePiece {
-    width: 85%;
-    height: 85%;
+    width: 125px;
+    height: 125px;
     background-size: 100%;
     border-radius: 50%;
     background-repeat: no-repeat;
@@ -110,4 +112,23 @@ body {
     align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
+}
+
+@media (max-width: 700px) {
+    .blackPiece, .whitePiece {
+        width: 100px;
+        height: 100px;
+    }
+}
+@media (max-width: 450px) {
+    .blackPiece, .whitePiece {
+        width: 75px;
+        height: 75px;
+    }
+}
+@media (max-width: 375px) {
+    .blackPiece, .whitePiece {
+        width: 60px;
+        height: 60px;
+    }
 }
