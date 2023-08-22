@@ -14,7 +14,7 @@ body {
 #container {
     background-image: url(./images/marble.jpg);
     display: grid;
-    grid-template-rows: 1.25fr 6fr 1fr;
+    grid-template-rows: 1.25fr .5fr 6fr 1fr;
     height: 100%;
     width: 100%;
     justify-items: center;
@@ -27,29 +27,62 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50%;
+    gap: 25%;
     max-width: var(--maxFieldWidth);
+}
+
+.option {
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    background-color: rgb(119, 48, 1);
+    color: white;
+}
+
+.whostarts {
+    grid-row: 2 / 3;
 }
 
 #board {
     width: 80%;
-    grid-row: 2 / 3;
+    grid-row: 3 / 4;
     display: grid;
     grid-template-columns: repeat(3, minmax(33.333%, 1fr));
     grid-template-rows: repeat(3, minmax(33.3333%, 1fr));
     max-width: var(--maxFieldWidth);
+    
 }
 
 .space {
     min-width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.blackPiece, .whitePiece {
+    width: 85%;
+    height: 85%;
+    background-size: 100%;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+}
+
+.blackPiece {
+    background-image: url(./images/black_piece.png); 
+}
+
+.whitePiece {
+    background-image: url(./images/white_piece.png);
 }
 
 .space:nth-child(2n+1) {
-    background-color: rgb(75, 34, 21);
+    background-color: rgb(119, 48, 1);
 }
 
 .space:nth-child(2n) {
-    background-color: rgb(255, 251, 240);
+    background-color: rgb(255, 251, 232);
 }
 
 .space:nth-child(3n+1) {
@@ -69,7 +102,12 @@ body {
 }
 
 #footer {
-    grid-row: 3 / -1;
+    grid-row: 4 / -1;
     width: 80%;
     max-width: var(--maxFieldWidth);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
