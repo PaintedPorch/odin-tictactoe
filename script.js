@@ -65,7 +65,12 @@ const gameBoard = (function() {
 
     function _resetField() {
         resetBoard.addEventListener("click", function() {
-            _movesArray = [' ',' ',' ',' ',' ',' ',' ',' ',' '];
+            _resetProcedure();
+        });
+    }
+
+    function _resetProcedure() {
+        _movesArray = [' ',' ',' ',' ',' ',' ',' ',' ',' '];
             whoStartsPlayer++;
             moveCount = 0;
 
@@ -81,7 +86,32 @@ const gameBoard = (function() {
             }
             
             console.clear();
-        });
+    }
+
+    function _partialArray(startIndex, endIndex, array) {
+        let returnArray = [];
+
+        if (startIndex > endIndex) {
+            return "Num 1 needs to be smaller than Num 2";
+        }
+
+        for (let i = startIndex; i < endIndex; i++) {
+            returnArray.push(array[i]);
+        }
+
+        return returnArray;
+    }
+
+    function _valueMatch(array1, array2) {
+        let completeMatch = true;
+
+        for (let i = 0; i < array1.length; i++) {
+            if (array1[i] != array2[i]) {
+                completeMatch = false;
+            }
+        }
+
+        return completeMatch;
     }
 
     function _checkScores() {
@@ -96,16 +126,24 @@ const gameBoard = (function() {
 
         let displayText = "";
 
-        if (_movesArray.slice(0, 3) === ['Y', 'Y', 'Y']) displayText = "Player Two Wins";
-        else if (_movesArray.slice(3, 6) == ['Y','Y','Y']) displayText = "Player Two Wins";
-        else if (_movesArray.slice(6, 9) == ['Y','Y','Y']) displayText = "Player Two Wins";
+        for (value in _partialArray(0, 3, _movesArray).values()) {
+            console.log("Value" + value);
+        }
 
-        else if (_movesArray.slice(1, 3) == ['X','X','X']) displayText = "Player One Wins";
-        else if (_movesArray.slice(3, 6) == ['X','X','X']) displayText = "Player One Wins";
-        else if (_movesArray.slice(6, 9) == ['X','X','X']) displayText = "Player One Wins";
+        // Check horizontal matches ('Y,'Y','Y' || 'X','X','X')
+
+        if (_valueMatch(_partialArray(0, 3, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
+        else if (_valueMatch(_partialArray(3, 6, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
+        else if (_valueMatch(_partialArray(6, 9, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
+
+        else if (_valueMatch(_partialArray(0, 3, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
+        else if (_valueMatch(_partialArray(0, 3, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
+        else if (_valueMatch(_partialArray(0, 3, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
         
+        // End horizontal row checks
+        // Check vertical rows (Y-?-?-Y-?-?-Y-?-? || X-?-?-X-?-?-X-?-?)
+
         else {
-            console.log(_movesArray.slice(0, 3));
             displayText = "In Progress"; 
         }
         
@@ -119,7 +157,6 @@ const gameBoard = (function() {
     // Make function to check if there are 3 Y's or X's next to each other
 
     return {
-        movesArray: _movesArray,
         displayMoves: _displayMoves,
         resetField: _resetField,
     };
