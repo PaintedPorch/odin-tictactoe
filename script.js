@@ -234,8 +234,6 @@ const gameBoard = (function() {
         resultText.textContent = displayText;
     }
 
-    // Make function to check if there are 3 Y's or X's next to each other
-
     return {
         displayMoves: _displayMoves,
         resetField: _resetField,
@@ -243,13 +241,3 @@ const gameBoard = (function() {
 })();
 
 gameBoard.displayMoves();
-gameBoard.resetField();
-
-const displayController = (function() {
-    "use strict";
-
-})();
-
-const player = () => {
-
-};
