@@ -28,11 +28,9 @@ const gameBoard = (function() {
     // Add gamecount, if gamecount % 2 == 1, playerOne starts true, else false
     // generate random number of index not yet taken for computer mode
 
-    let whoStartsPlayer = 0;
+    let playerOne = true;
 
     function _placePawn() {
-        let playerOne = true;
-
         for (let j = 0; j < _movesArray.length; j++) {
             boardSpots[j].addEventListener("click", function() {
                 if (_movesArray[j] == ' ' && playerOne == true) {
@@ -71,13 +69,12 @@ const gameBoard = (function() {
 
     function _resetProcedure() {
         _movesArray = [' ',' ',' ',' ',' ',' ',' ',' ',' '];
-            whoStartsPlayer++;
             moveCount = 0;
 
-            if (whoStartsPlayer % 2 == 0) {
+            if (playerOne == true) {
                 whoStartsText.textContent = "Player One Starts";
             }
-            else if (whoStartsPlayer % 2 == 1) {
+            else if (playerOne == false) {
                 whoStartsText.textContent = "Player Two Starts";
             }
             
@@ -85,7 +82,7 @@ const gameBoard = (function() {
                 boardSpots[i].innerHTML = ``; 
             }
 
-            resultText.textContent = "Click to Start";
+            resultText.textContent = "Make a move to Start";
             
             console.clear();
     }
@@ -229,6 +226,7 @@ const gameBoard = (function() {
         
         if (moveCount == 9) {
             displayText = "Tie";
+            setTimeout(_resetProcedure, 3000);
         }
 
         resultText.textContent = displayText;
@@ -241,3 +239,4 @@ const gameBoard = (function() {
 })();
 
 gameBoard.displayMoves();
+gameBoard.resetField();
