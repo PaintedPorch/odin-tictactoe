@@ -84,6 +84,8 @@ const gameBoard = (function() {
             for (let i = 0; i < _movesArray.length; i++) {
                 boardSpots[i].innerHTML = ``; 
             }
+
+            resultText.textContent = "Click to Start";
             
             console.clear();
     }
@@ -130,13 +132,31 @@ const gameBoard = (function() {
 
         // Check horizontal matches ('Y,'Y','Y' || 'X','X','X')
 
-        if (_valueMatch(_threeIndices(0, 1, 2, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
-        else if (_valueMatch(_threeIndices(3, 4, 5, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
-        else if (_valueMatch(_threeIndices(6, 7, 8, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
+        if (_valueMatch(_threeIndices(0, 1, 2, _movesArray), ['Y','Y','Y']) == true) {
+            displayText = "Player Two Wins";
+            setTimeout(_resetProcedure, 3000);
+        }
+        else if (_valueMatch(_threeIndices(3, 4, 5, _movesArray), ['Y','Y','Y']) == true) {
+            displayText = "Player Two Wins";
+            setTimeout(_resetProcedure, 3000);
+        }
+        else if (_valueMatch(_threeIndices(6, 7, 8, _movesArray), ['Y','Y','Y']) == true) {
+            displayText = "Player Two Wins";
+            setTimeout(_resetProcedure, 3000);
+        }
 
-        else if (_valueMatch(_threeIndices(0, 1, 2, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
-        else if (_valueMatch(_threeIndices(3, 4, 5, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
-        else if (_valueMatch(_threeIndices(6, 7, 8, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
+        else if (_valueMatch(_threeIndices(0, 1, 2, _movesArray), ['X','X','X']) == true) {
+            displayText = "Player One Wins";
+            setTimeout(_resetProcedure, 3000);
+        }
+        else if (_valueMatch(_threeIndices(3, 4, 5, _movesArray), ['X','X','X']) == true) {
+            displayText = "Player One Wins";
+            setTimeout(_resetProcedure, 3000);
+        }
+        else if (_valueMatch(_threeIndices(6, 7, 8, _movesArray), ['X','X','X']) == true) {
+            displayText = "Player One Wins";
+            setTimeout(_resetProcedure, 3000);
+        }
         
         // End horizontal row checks
         // Check vertical rows (Y-?-?-Y-?-?-Y-?-? || X-?-?-X-?-?-X-?-?)
@@ -149,27 +169,57 @@ const gameBoard = (function() {
             These three checks are separate function calls
         */
 
-        else if (_valueMatch(_threeIndices(0, 3, 6, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
-        else if (_valueMatch(_threeIndices(1, 4, 7, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
-        else if (_valueMatch(_threeIndices(2, 5, 8, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
+        else if (_valueMatch(_threeIndices(0, 3, 6, _movesArray), ['Y','Y','Y']) == true) {
+            displayText = "Player Two Wins";
+            setTimeout(_resetProcedure, 3000);
+        }
+        else if (_valueMatch(_threeIndices(1, 4, 7, _movesArray), ['Y','Y','Y']) == true) {
+            displayText = "Player Two Wins";
+            setTimeout(_resetProcedure, 3000);
+        }
+        else if (_valueMatch(_threeIndices(2, 5, 8, _movesArray), ['Y','Y','Y']) == true) {
+            displayText = "Player Two Wins";
+            setTimeout(_resetProcedure, 3000);
+        }
 
-        else if (_valueMatch(_threeIndices(0, 3, 6, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
-        else if (_valueMatch(_threeIndices(1, 4, 7, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
-        else if (_valueMatch(_threeIndices(2, 5, 8, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
+        else if (_valueMatch(_threeIndices(0, 3, 6, _movesArray), ['X','X','X']) == true) {
+            displayText = "Player One Wins";
+            setTimeout(_resetProcedure, 3000);
+        }
+        else if (_valueMatch(_threeIndices(1, 4, 7, _movesArray), ['X','X','X']) == true) {
+            displayText = "Player One Wins";
+            setTimeout(_resetProcedure, 3000);
+        }
+        else if (_valueMatch(_threeIndices(2, 5, 8, _movesArray), ['X','X','X']) == true) {
+            displayText = "Player One Wins";
+            setTimeout(_resetProcedure, 3000);
+        }
 
         // End vertical checks
         // Check downwards diagonal (Y-?-?-?-Y-?-?-?-Y)
 
-        else if (_valueMatch(_threeIndices(0, 4, 8, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
+        else if (_valueMatch(_threeIndices(0, 4, 8, _movesArray), ['Y','Y','Y']) == true) {
+            displayText = "Player Two Wins";
+            setTimeout(_resetProcedure, 3000);
+        }
 
-        else if (_valueMatch(_threeIndices(0, 4, 8, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
+        else if (_valueMatch(_threeIndices(0, 4, 8, _movesArray), ['X','X','X']) == true) {
+            displayText = "Player One Wins";
+            setTimeout(_resetProcedure, 3000);
+        }
 
         // End check downwards diagonal
         // Check upwards diagonal (?-?-Y-?-Y-?-Y-?-?)
 
-        else if (_valueMatch(_threeIndices(2, 4, 6, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
+        else if (_valueMatch(_threeIndices(2, 4, 6, _movesArray), ['Y','Y','Y']) == true) {
+            displayText = "Player Two Wins";
+            setTimeout(_resetProcedure, 3000);
+        }
 
-        else if (_valueMatch(_threeIndices(2, 4, 6, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
+        else if (_valueMatch(_threeIndices(2, 4, 6, _movesArray), ['X','X','X']) == true) {
+            displayText = "Player One Wins";
+            setTimeout(_resetProcedure, 3000);
+        }
 
         // End check downwards diagonal
 
