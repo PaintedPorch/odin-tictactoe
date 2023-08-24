@@ -88,18 +88,20 @@ const gameBoard = (function() {
             console.clear();
     }
 
-    function _partialArray(startIndex, endIndex, array) {
-        let returnArray = [];
+    function _threeIndices(index1, index2, index3, array) {
+        let resultArray = [];
 
-        if (startIndex > endIndex) {
-            return "Num 1 needs to be smaller than Num 2";
+        if (index1 > index2 || index2 > index3) {
+            return "Indices should increment";
         }
 
-        for (let i = startIndex; i < endIndex; i++) {
-            returnArray.push(array[i]);
+        for (let i = 0; i < array.length; i++) {
+            if (i == index1) resultArray.push(array[i]);
+            else if (i == index2) resultArray.push(array[i]);
+            else if (i == index3) resultArray.push(array[i]);
         }
 
-        return returnArray;
+        return resultArray;
     }
 
     function _valueMatch(array1, array2) {
@@ -126,22 +128,50 @@ const gameBoard = (function() {
 
         let displayText = "";
 
-        for (value in _partialArray(0, 3, _movesArray).values()) {
-            console.log("Value" + value);
-        }
-
         // Check horizontal matches ('Y,'Y','Y' || 'X','X','X')
 
-        if (_valueMatch(_partialArray(0, 3, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
-        else if (_valueMatch(_partialArray(3, 6, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
-        else if (_valueMatch(_partialArray(6, 9, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
+        if (_valueMatch(_threeIndices(0, 1, 2, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
+        else if (_valueMatch(_threeIndices(3, 4, 5, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
+        else if (_valueMatch(_threeIndices(6, 7, 8, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
 
-        else if (_valueMatch(_partialArray(0, 3, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
-        else if (_valueMatch(_partialArray(0, 3, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
-        else if (_valueMatch(_partialArray(0, 3, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
+        else if (_valueMatch(_threeIndices(0, 1, 2, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
+        else if (_valueMatch(_threeIndices(3, 4, 5, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
+        else if (_valueMatch(_threeIndices(6, 7, 8, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
         
         // End horizontal row checks
         // Check vertical rows (Y-?-?-Y-?-?-Y-?-? || X-?-?-X-?-?-X-?-?)
+
+        /*
+            Idea: extract values 1,4,7 for check one 2,5,8 for check two
+            3,6,9 for check three. Make an array of these values and execute
+            the _valueMatch function to see if they match Y-Y-Y or X-X-X
+
+            These three checks are separate function calls
+        */
+
+        else if (_valueMatch(_threeIndices(0, 3, 6, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
+        else if (_valueMatch(_threeIndices(1, 4, 7, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
+        else if (_valueMatch(_threeIndices(2, 5, 8, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
+
+        else if (_valueMatch(_threeIndices(0, 3, 6, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
+        else if (_valueMatch(_threeIndices(1, 4, 7, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
+        else if (_valueMatch(_threeIndices(2, 5, 8, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
+
+        // End vertical checks
+        // Check downwards diagonal (Y-?-?-?-Y-?-?-?-Y)
+
+        else if (_valueMatch(_threeIndices(0, 4, 8, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
+
+        else if (_valueMatch(_threeIndices(0, 4, 8, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
+
+        // End check downwards diagonal
+        // Check upwards diagonal (?-?-Y-?-Y-?-Y-?-?)
+
+        else if (_valueMatch(_threeIndices(2, 4, 6, _movesArray), ['Y','Y','Y']) == true) displayText = "Player Two Wins";
+
+        else if (_valueMatch(_threeIndices(2, 4, 6, _movesArray), ['X','X','X']) == true) displayText = "Player One Wins";
+
+        // End check downwards diagonal
 
         else {
             displayText = "In Progress"; 
